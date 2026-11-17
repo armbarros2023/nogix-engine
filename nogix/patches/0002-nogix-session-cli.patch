@@ -1,0 +1,35 @@
+diff --git a/src/core_main.rs b/src/core_main.rs
+index 0f62d1e..0a73783 100644
+--- a/src/core_main.rs
++++ b/src/core_main.rs
+@@ -464,6 +464,22 @@ pub fn core_main() -> Option<CoreMainAction> {
+         } else if args[0] == "--get-id" {
+             println!("{}", crate::ipc::get_id());
+             return None;
++        } else if args[0] == "--nogix-session" {
++            // NOGIX: o app NOGIX (mesmo usuário) pede uma senha de uso único nova para a sessão que
++            // ele acabou de autorizar. Renova a senha temporária no servidor do motor e imprime
++            // {"id":..,"password":..}. É a mesma senha que a tela do motor mostraria a este usuário.
++            let renewed = crate::ipc::update_temporary_password().is_ok();
++            std::thread::sleep(std::time::Duration::from_millis(400));
++            let id = crate::ipc::get_id();
++            let password = crate::ipc::get_config("temporary-password")
++                .ok()
++                .flatten()
++                .unwrap_or_default();
++            println!(
++                "{}",
++                serde_json::json!({ "id": id, "password": password, "renewed": renewed })
++            );
++            return None;
+         } else if args[0] == "--set-id" {
+             if is_cli_setting_change_disabled() {
+                 println!("Settings are disabled!");
+@@ -871,6 +887,7 @@ fn is_user_main_ipc_scope_cli_command(args: &[String]) -> bool {
+         Some("--password")
+             | Some("--set-unlock-pin")
+             | Some("--get-id")
++            | Some("--nogix-session")
+             | Some("--set-id")
+             | Some("--config")
+             | Some("--option")

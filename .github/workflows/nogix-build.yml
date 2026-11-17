@@ -131,6 +131,8 @@ jobs:
       shell: bash
       run: 'git -C libs/hbb_common apply --whitespace=nowarn "$GITHUB_WORKSPACE/nogix/patches/0001-hbb_common-nogix-marca-e-servidor.patch"
 
+      git apply --whitespace=nowarn "$GITHUB_WORKSPACE/nogix/patches/0002-nogix-session-cli.patch"
+
         grep -n "NOGIX_RENDEZVOUS" libs/hbb_common/src/config.rs
 
         if [ -z "$NOGIX_RENDEZVOUS" ]; then echo "::warning::NOGIX_RENDEZVOUS vazio: o motor vai apontar para um endereço inválido."; fi'
@@ -414,6 +416,8 @@ jobs:
     - name: 'NOGIX: aplicar marca e servidor de teste'
       shell: bash
       run: 'git -C libs/hbb_common apply --whitespace=nowarn "$GITHUB_WORKSPACE/nogix/patches/0001-hbb_common-nogix-marca-e-servidor.patch"
+
+      git apply --whitespace=nowarn "$GITHUB_WORKSPACE/nogix/patches/0002-nogix-session-cli.patch"
 
         grep -n "NOGIX_RENDEZVOUS" libs/hbb_common/src/config.rs
 
