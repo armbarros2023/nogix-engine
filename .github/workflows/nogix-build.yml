@@ -47,7 +47,7 @@ env:
   UPLOAD_ARTIFACT: ${{ inputs.upload-artifact }}
   PUBLISH_UPDATE_METADATA: ${{ inputs.publish-update-metadata }}
   SIGN_BASE_URL: ${{ secrets.SIGN_BASE_URL }}-2
-  NOGIX_APP_NAME: NOGIX Engine
+  NOGIX_APP_NAME: NOGIX-Engine
   NOGIX_RENDEZVOUS: ${{ vars.NOGIX_RENDEZVOUS }}
   NOGIX_RS_PUB_KEY: ${{ vars.NOGIX_RS_PUB_KEY }}
 jobs:

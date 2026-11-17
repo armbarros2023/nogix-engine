@@ -1,5 +1,5 @@
 diff --git a/src/config.rs b/src/config.rs
-index 9ee5cac..999a1fa 100644
+index 9ee5cac..d766545 100644
 --- a/src/config.rs
 +++ b/src/config.rs
 @@ -68,7 +68,9 @@ lazy_static::lazy_static! {
@@ -7,7 +7,7 @@ index 9ee5cac..999a1fa 100644
      pub static ref PROD_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new("".to_owned());
      pub static ref EXE_RENDEZVOUS_SERVER: RwLock<String> = Default::default();
 -    pub static ref APP_NAME: RwLock<String> = RwLock::new("RustDesk".to_owned());
-+    // NOGIX: nome do motor (diferente de "RustDesk" => is_custom_client(): sem checagem de atualização
++    // NOGIX: nome do motor, sem espaços (o instalador só aceita letras, números, - e _). Diferente de "RustDesk" => is_custom_client(): sem checagem de atualização
 +    // nem servidores públicos do RustDesk).
 +    pub static ref APP_NAME: RwLock<String> = RwLock::new(NOGIX_APP_NAME.to_owned());
      static ref KEY_PAIR: Mutex<Option<KeyPair>> = Default::default();
@@ -24,7 +24,7 @@ index 9ee5cac..999a1fa 100644
 +// os servidores públicos do RustDesk.
 +pub const NOGIX_APP_NAME: &str = match option_env!("NOGIX_APP_NAME") {
 +    Some(v) => v,
-+    None => "NOGIX Engine",
++    None => "NOGIX-Engine",
 +};
 +pub const RENDEZVOUS_SERVERS: &[&str] = &[match option_env!("NOGIX_RENDEZVOUS") {
 +    Some(v) => v,
