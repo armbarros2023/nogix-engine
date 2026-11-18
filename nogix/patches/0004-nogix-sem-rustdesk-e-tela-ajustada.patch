@@ -1,0 +1,25 @@
+--- a/flutter/lib/common.dart	2026-11-18 10:42:22.441353243 +0000
++++ b/flutter/lib/common.dart	2026-11-18 10:42:22.462586952 +0000
+@@ -3773,7 +3773,8 @@
+ }
+ 
+ Widget loadPowered(BuildContext context) {
+-  if (bind.mainGetBuildinOption(key: "hide-powered-by-me") == 'Y') {
++  // NOGIX: sem o texto "Desenvolvido por RustDesk" na tela.
++  if (true || bind.mainGetBuildinOption(key: "hide-powered-by-me") == 'Y') {
+     return SizedBox.shrink();
+   }
+   return MouseRegion(
+--- a/src/common.rs	2026-11-18 10:42:22.443371394 +0000
++++ b/src/common.rs	2026-11-18 10:42:22.464686486 +0000
+@@ -2457,7 +2457,9 @@
+ 
+ #[inline]
+ pub fn using_public_server() -> bool {
+-    crate::get_custom_rendezvous_server(get_option("custom-rendezvous-server")).is_empty()
++    // NOGIX: o servidor NOGIX vem embutido na compilação; nunca é o servidor público do RustDesk
++    // (tira o aviso "configure seu próprio servidor").
++    false
+ }
+ 
+ pub struct ThrottledInterval {

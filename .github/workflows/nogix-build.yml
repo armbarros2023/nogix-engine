@@ -48,7 +48,7 @@ env:
   UPLOAD_ARTIFACT: ${{ inputs.upload-artifact }}
   PUBLISH_UPDATE_METADATA: ${{ inputs.publish-update-metadata }}
   SIGN_BASE_URL: ${{ secrets.SIGN_BASE_URL }}-2
-  NOGIX_APP_NAME: NOGIX-Engine
+  NOGIX_APP_NAME: NOGIX-Remoto
   NOGIX_RENDEZVOUS: ${{ vars.NOGIX_RENDEZVOUS }}
   NOGIX_RS_PUB_KEY: ${{ vars.NOGIX_RS_PUB_KEY }}
 jobs:
@@ -135,6 +135,8 @@ jobs:
         git apply --whitespace=nowarn "$GITHUB_WORKSPACE/nogix/patches/0002-nogix-session-cli.patch"
 
         git apply --whitespace=nowarn "$GITHUB_WORKSPACE/nogix/patches/0003-nogix-tela-e-cores.patch"
+
+        git apply --whitespace=nowarn "$GITHUB_WORKSPACE/nogix/patches/0004-nogix-sem-rustdesk-e-tela-ajustada.patch"
 
         cp nogix/branding/app_icon.ico flutter/windows/runner/resources/app_icon.ico
 
@@ -445,6 +447,8 @@ jobs:
         git apply --whitespace=nowarn "$GITHUB_WORKSPACE/nogix/patches/0002-nogix-session-cli.patch"
 
         git apply --whitespace=nowarn "$GITHUB_WORKSPACE/nogix/patches/0003-nogix-tela-e-cores.patch"
+
+        git apply --whitespace=nowarn "$GITHUB_WORKSPACE/nogix/patches/0004-nogix-sem-rustdesk-e-tela-ajustada.patch"
 
         cp nogix/branding/app_icon.ico flutter/windows/runner/resources/app_icon.ico
 
