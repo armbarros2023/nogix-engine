@@ -1,0 +1,13 @@
+--- a/src/platform/windows.rs	2026-11-18 12:51:21.179074275 +0000
++++ b/src/platform/windows.rs	2026-11-18 12:51:21.181494387 +0000
+@@ -1809,7 +1809,9 @@
+         build_date = crate::BUILD_DATE,
+         sleep = if debug { "timeout 300" } else { "" },
+         dels = if debug { "" } else { &dels },
+-        copy_exe = copy_exe_cmd(&src_exe, &exe, &path)?,
++        // NOGIX: na instalação nova o programa copiado ainda se chama rustdesk.exe; renomeia para
++        // o nome do app (NOGIX-Remoto.exe), que é o que o serviço e os atalhos usam.
++        copy_exe = format!("{}{}", copy_exe_cmd(&src_exe, &exe, &path)?, rename_exe_cmd(&src_exe, &path)?),
+         import_config = get_import_config(&exe),
+     );
+     run_cmds(

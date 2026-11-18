@@ -138,6 +138,8 @@ jobs:
 
         git apply --whitespace=nowarn "$GITHUB_WORKSPACE/nogix/patches/0004-nogix-sem-rustdesk-e-tela-ajustada.patch"
 
+        git apply --whitespace=nowarn "$GITHUB_WORKSPACE/nogix/patches/0005-nogix-renomear-exe-na-instalacao.patch"
+
         cp nogix/branding/app_icon.ico flutter/windows/runner/resources/app_icon.ico
 
         cp nogix/branding/icon.ico res/icon.ico
@@ -449,6 +451,8 @@ jobs:
         git apply --whitespace=nowarn "$GITHUB_WORKSPACE/nogix/patches/0003-nogix-tela-e-cores.patch"
 
         git apply --whitespace=nowarn "$GITHUB_WORKSPACE/nogix/patches/0004-nogix-sem-rustdesk-e-tela-ajustada.patch"
+
+        git apply --whitespace=nowarn "$GITHUB_WORKSPACE/nogix/patches/0005-nogix-renomear-exe-na-instalacao.patch"
 
         cp nogix/branding/app_icon.ico flutter/windows/runner/resources/app_icon.ico
 
